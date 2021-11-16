@@ -11,14 +11,14 @@ export function Board(): JSX.Element {
 
   const [playerOne, setPlayerOne] = useState(true)
 
-  function handleTurn(index: number) {
-    //increase turn
-    setTurn(turn + 1)
+  //access boardState to record player's moves and save them into array
+  //this accesses the board property within boardState
+  const moveList = boardState.slice(0, turn + 1)
+  const currentMove = moveList[moveList.length - 1]
+  const board = currentMove.board.slice(0)
 
-    //access boardState to record player's moves and save them into array
-    const moveList = boardState.slice(0, turn + 1)
-    const currentMove = moveList[moveList.length - 1]
-    const board = currentMove.board.slice(0)
+  function handleTurn(index: number) {
+    setTurn(turn + 1)
 
     playerOne ? (board[index] = 'X') : (board[index] = 'O')
 
@@ -40,51 +40,60 @@ export function Board(): JSX.Element {
     <>
       <div className="board">
         <Square
+          turn={turn}
           index={0}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
         <Square
+          turn={turn}
           index={1}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
         <Square
+          turn={turn}
           index={2}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
 
         <Square
+          turn={turn}
           index={3}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
         <Square
+          turn={turn}
           index={4}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
         <Square
+          turn={turn}
           index={5}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
 
         <Square
+          turn={turn}
           index={6}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
         <Square
+          turn={turn}
           index={7}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
         <Square
+          turn={turn}
           index={8}
-          playerOne={playerOne}
           handleTurn={(index) => handleTurn(index)}
+          board={board}
         />
       </div>
 
