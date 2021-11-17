@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
 type SquareProps = {
-  turn: number
   index: number
   handleTurn: HandleTurn
   board: string[]
 }
 
-export function Square({
-  turn,
-  index,
-  handleTurn,
-  board,
-}: SquareProps): JSX.Element {
+export function Square({ index, handleTurn, board }: SquareProps): JSX.Element {
   const [isClicked, setIsClicked] = useState(false)
   const currentBoard = board.slice(0)
   const letter = currentBoard[index]
+
+  console.log('board for square component' + board)
 
   // useEffect(() => {
   //   turn === 0 ? setIsClicked(false) : null
   // }, [turn])
 
+  //if board state changes, allow square to be clicked again if it is changed to ''
   useEffect(() => {
     letter === '' ? setIsClicked(false) : null
   }, [letter])
