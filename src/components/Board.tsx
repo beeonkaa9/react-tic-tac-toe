@@ -11,11 +11,12 @@ export function Board(): JSX.Element {
       board: ['', '', '', '', '', '', '', '', ''],
     },
   ])
-
   const [playerOne, setPlayerOne] = useState(true)
 
-  //access boardState to record player's moves and save them into array
-  //this accesses the board property within boardState
+  /*
+    access boardState to record player's moves and save them into array;
+    this accesses the board property within boardState for each turn
+  */
   const currentBoardState = boardState.slice(0, turn + 1)
   const currentMove = currentBoardState[currentBoardState.length - 1]
   const board = currentMove.board.slice(0)
@@ -36,9 +37,11 @@ export function Board(): JSX.Element {
     setBoardState([...boardState, { board: board }])
   }
 
-  //to access previous moves and undo them; goes to index of turn
-  //requested, access the board property there, and remove the rest of the arrays
-  //in boardState after the turn's index
+  /*
+    to access previous moves and undo them; goes to index of turn
+    requested, access the board property there, and remove the rest of the arrays
+    in boardState after the turn's index
+  */
   function changeTurn(turn: number) {
     const newBoard = boardState.slice(0, turn + 1)
     setTurn(turn)
@@ -46,10 +49,6 @@ export function Board(): JSX.Element {
 
     setBoardState([...newBoard])
   }
-
-  // useEffect(() => {
-  //   winner ? changeTurn(0) : null
-  // }, [winner])
 
   return (
     <>
@@ -62,6 +61,7 @@ export function Board(): JSX.Element {
             <Square
               key={i}
               index={i}
+              turn={turn}
               handleTurn={(index) => handleTurn(index)}
               board={board}
             />

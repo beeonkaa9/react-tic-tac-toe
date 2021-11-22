@@ -15,7 +15,7 @@ export function Moves({ boardState, changeTurn }: MovesProps) {
           key={turn}
           onClick={() => changeTurn(turn)}
         >
-          {turn ? <p>Go to turn {turn}</p> : <p>Go to beginning of the game</p>}
+          {turn ? <p>Go to turn {turn}</p> : <p>Reset game</p>}
         </button>
       ))}
     </>
