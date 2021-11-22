@@ -21,7 +21,7 @@ export function Square({
     turn === 0 ? setIsClicked(false) : null
   }, [turn])
 
-  //if board state changes (not just reset), allow square to be clicked again if it is '' in board
+  //if board state changes (via "time travel" feature), allow square to be clicked again if it is '' in board
   useEffect(() => {
     letter === '' ? setIsClicked(false) : null
   }, [letter])

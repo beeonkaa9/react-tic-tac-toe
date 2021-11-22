@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { determineWin } from '../utils/determineWin'
 import { Moves } from './Moves'
 import { Square } from './Square'
@@ -31,7 +31,6 @@ export function Board(): JSX.Element {
 
     playerOne ? (board[index] = 'X') : (board[index] = 'O')
 
-    //if player one, then change to player two (for next turn)
     playerOne ? setPlayerOne(false) : setPlayerOne(true)
 
     setBoardState([...boardState, { board: board }])
@@ -40,7 +39,7 @@ export function Board(): JSX.Element {
   /*
     to access previous moves and undo them; goes to index of turn
     requested, access the board property there, and remove the rest of the arrays
-    in boardState after the turn's index
+    in boardState that are after the turn's index
   */
   function changeTurn(turn: number) {
     const newBoard = boardState.slice(0, turn + 1)

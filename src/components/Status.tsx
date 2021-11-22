@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 type StatusProps = {
   playerOne: boolean
   board: string[]
-  winner: any
+  winner: string
 }
 
 export function Status({ board, playerOne, winner }: StatusProps): JSX.Element {
-  console.log({ board })
   const player = playerOne ? 1 : 2
+  const isFullBoard = board.every((square) => square === 'X' || square === 'O')
+  let gameStatus = ''
+
+  if (isFullBoard && !winner) {
+    gameStatus = 'Player 1 and 2 tied! Click "Reset game" to play again'
+  } else if (winner === 'X' || winner === 'O') {
+    gameStatus = playerOne
+      ? 'Player 2 wins! Click "Reset game" to play again'
+      : 'Player 1 wins! Click "Reset game" to play again'
+  } else {
+    gameStatus = `Player ${player}'s turn`
+  }
 
   return (
     <>
-      {winner ? (
-        <h1>Player {playerOne ? 2 : 1} wins! </h1>
-      ) : (
-        <h1>Player {player}&#39;s turn</h1>
-      )}
+      <h1>{gameStatus}</h1>
     </>
   )
 }
