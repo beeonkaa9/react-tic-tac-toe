@@ -11,21 +11,14 @@ export function Board(): JSX.Element {
       board: ['', '', '', '', '', '', '', '', ''],
     },
   ])
-  const [isplayerOnesTurn, setIsPlayerOnesTurn] = useState(true)
+  const [isPlayerOnesTurn, setIsPlayerOnesTurn] = useState(true)
 
-  /*
-    access boardState to record player's moves and save them into array;
-    this accesses the board property within boardState for each turn
-  */
-  const currentBoardState = gameHistory.slice(0, turn + 1)
-  const currentMove = currentBoardState[currentBoardState.length - 1]
-  const board = currentMove.board.slice(0)
-  const winner = determineWin(board)
+  const board = [...gameHistory[gameHistory.length - 1].board]
 
   return (
     <>
       <div className="gameStatus">
-        <Status board={board} playerOne={isplayerOnesTurn} winner={winner} />
+        <Status board={board} playerOne={isPlayerOnesTurn} />
       </div>
       <div className="gameSpace">
         <div className="board">
@@ -35,14 +28,13 @@ export function Board(): JSX.Element {
               index={i}
               turn={turn}
               handleTurn={(index) => {
+                const board = [...gameHistory[gameHistory.length - 1].board]
                 if (determineWin(board)) {
                   return board[index]
                 }
                 setTurn(turn + 1)
-                isplayerOnesTurn ? (board[index] = 'X') : (board[index] = 'O')
-                isplayerOnesTurn
-                  ? setIsPlayerOnesTurn(false)
-                  : setIsPlayerOnesTurn(true)
+                board[index] = isPlayerOnesTurn ? 'X' : 'O'
+                setIsPlayerOnesTurn(!isPlayerOnesTurn)
                 setGameHistory([...gameHistory, { board: board }])
               }}
               board={board}
@@ -53,14 +45,10 @@ export function Board(): JSX.Element {
         <div className="gameMoves">
           <Moves
             boardState={gameHistory}
-            changeTurn={(turn) => {
-              const newBoard = gameHistory.slice(0, turn + 1)
+            onTurnChange={(turn) => {
               setTurn(turn)
-              turn % 2 === 0
-                ? setIsPlayerOnesTurn(true)
-                : setIsPlayerOnesTurn(false)
-
-              setGameHistory([...newBoard])
+              setIsPlayerOnesTurn(turn % 2 === 0)
+              setGameHistory(gameHistory.slice(0, turn + 1))
             }}
           />
         </div>

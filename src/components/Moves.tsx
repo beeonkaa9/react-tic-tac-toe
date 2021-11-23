@@ -2,10 +2,10 @@ import React from 'react'
 
 type MovesProps = {
   boardState: { board: string[] }[]
-  changeTurn: ChangeTurn
+  onTurnChange: onTurnChange
 }
 
-export function Moves({ boardState, changeTurn }: MovesProps) {
+export function Moves({ boardState, onTurnChange }: MovesProps) {
   return (
     <>
       {boardState.map((move, turn) => (
@@ -13,7 +13,7 @@ export function Moves({ boardState, changeTurn }: MovesProps) {
           type="button"
           className="turnButton"
           key={turn}
-          onClick={() => changeTurn(turn)}
+          onClick={() => onTurnChange(turn)}
         >
           {turn ? <p>Go to turn {turn}</p> : <p>Reset game</p>}
         </button>
