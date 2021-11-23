@@ -27,7 +27,7 @@ export function Square({
   }, [letter])
 
   //if the button has already been clicked to set a letter, do not change it; otherwise, set the letter
-  function clickButton() {
+  const clickButton = () => {
     handleTurn(index)
     setIsClicked(true)
   }
