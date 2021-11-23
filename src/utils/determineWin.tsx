@@ -10,15 +10,11 @@ export function determineWin(board: string[]) {
     [2, 4, 6],
   ]
 
-  let winningLetter = ''
-
-  for (let i = 0; i < possibleWins.length; i++) {
-    const [a, b, c] = possibleWins[i]
-    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      winningLetter = board[a]
-      return winningLetter
-    }
-  }
-
-  return winningLetter
+  return possibleWins.reduce(
+    (value, [a, b, c]) =>
+      board[a] && board[a] === board[b] && board[a] === board[c]
+        ? board[a]
+        : value,
+    ''
+  )
 }
