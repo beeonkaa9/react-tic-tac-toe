@@ -5,7 +5,7 @@ type MovesProps = {
   onTurnChange: onTurnChange
 }
 
-export function Moves({ boardState, onTurnChange }: MovesProps) {
+const Moves = ({ boardState, onTurnChange }: MovesProps) => {
   return (
     <>
       {boardState.map((move, turn) => (
@@ -21,3 +21,5 @@ export function Moves({ boardState, onTurnChange }: MovesProps) {
     </>
   )
 }
+
+export default Moves

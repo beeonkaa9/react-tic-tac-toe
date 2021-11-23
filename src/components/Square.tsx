@@ -7,12 +7,7 @@ type SquareProps = {
   board: string[]
 }
 
-export function Square({
-  index,
-  turn,
-  handleTurn,
-  board,
-}: SquareProps): JSX.Element {
+const Square = ({ index, turn, handleTurn, board }: SquareProps) => {
   const [isClicked, setIsClicked] = useState(false)
   const letter = board[index]
 
@@ -40,3 +35,5 @@ export function Square({
     </>
   )
 }
+
+export default Square

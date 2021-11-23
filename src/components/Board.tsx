@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { determineWin } from '../utils/determineWin'
-import { Moves } from './Moves'
-import { Square } from './Square'
-import { Status } from './Status'
+import determineWin from '../utils/determineWin'
+import Moves from './Moves'
+import Square from './Square'
+import Status from './Status'
 
-export function Board(): JSX.Element {
+const Board = () => {
   const [turn, setTurn] = useState(0)
   const [gameHistory, setGameHistory] = useState([
     {
@@ -56,3 +56,5 @@ export function Board(): JSX.Element {
     </>
   )
 }
+
+export default Board

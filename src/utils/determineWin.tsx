@@ -1,4 +1,4 @@
-export function determineWin(board: string[]) {
+const determineWin = (board: string[]) => {
   const possibleWins: number[][] = [
     [0, 1, 2],
     [3, 4, 5],
@@ -18,3 +18,5 @@ export function determineWin(board: string[]) {
     ''
   )
 }
+
+export default determineWin
