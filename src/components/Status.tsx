@@ -1,29 +1,27 @@
 import React from 'react'
+import { determineWin } from '../utils/determineWin'
 
 type StatusProps = {
   playerOne: boolean
   board: string[]
-  winner: string
 }
 
-export function Status({ board, playerOne, winner }: StatusProps): JSX.Element {
+export function Status({ board, playerOne }: StatusProps): JSX.Element {
   const player = playerOne ? 1 : 2
   const isFullBoard = board.every((square) => square === 'X' || square === 'O')
-  let gameStatus = ''
-
-  if (isFullBoard && !winner) {
-    gameStatus = 'Player 1 and 2 tied! Click "Reset game" to play again'
-  } else if (winner === 'X' || winner === 'O') {
-    gameStatus = playerOne
-      ? 'Player 2 wins! Click "Reset game" to play again'
-      : 'Player 1 wins! Click "Reset game" to play again'
-  } else {
-    gameStatus = `Player ${player}'s turn`
-  }
+  const winner = determineWin(board)
 
   return (
     <>
-      <h1>{gameStatus}</h1>
+      <h1>
+        {winner
+          ? `Player ${
+              winner === 'X' ? 1 : 2
+            } wins! Click "Reset game" to play again`
+          : isFullBoard
+          ? 'Player 1 and 2 tied! Click "Reset game" to play again'
+          : `Player ${player}'s turn`}
+      </h1>
     </>
   )
 }
