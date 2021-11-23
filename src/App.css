@@ -41,6 +41,7 @@ body {
   width: 75px;
   font-size: 35px;
   color: black;
+  cursor: pointer;
 }
 
 .square:hover {
@@ -60,6 +61,7 @@ body {
   border-radius: 10px;
   border-color: lightcyan;
   background-color: lightseagreen;
+  cursor: pointer;
 }
 
 .turnButton:hover {
